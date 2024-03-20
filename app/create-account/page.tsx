@@ -11,19 +11,18 @@ export default function CreateAccount() {
             </div>
             <form className="flex flex-col gap-4">
                 <FormInput
-                    type="text" placeholder="Username" required errors={[]}
+                    name="username" type="text" placeholder="Username" required errors={[]}
                 />
                 <FormInput
-                    type="email" placeholder="Email" required errors={[]}
+                    name="email" type="email" placeholder="Email" required errors={[]}
                 />
                 <FormInput
-                    type="password" placeholder="Password" required errors={[]}
+                    name="password" type="password" placeholder="Password" required errors={[]}
                 />
                 <FormInput
-                    type="password" placeholder="Confirm password" required errors={[]}
+                    name="confirmPassword" type="password" placeholder="Confirm password" required errors={[]}
                 />
                 <FormButton
-                    loading={false}
                     text="Create account"
                 />
             </form>
