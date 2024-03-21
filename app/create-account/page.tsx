@@ -1,28 +1,36 @@
-import FormButton from "@/components/form-btn";
-import FormInput from "@/components/form-input";
+"use client";
+
+import Button from "@/components/button";
+import Input from "@/components/input";
 import SocialLogin from "@/components/social-login";
+import { useFormState } from "react-dom";
+import { createAccount } from "./action";
 
 export default function CreateAccount() {
+    const [state, trigger] = useFormState(createAccount, null);
     return (
         <div className="flex flex-col gap-10 py-8 px-6">
             <div className="flex flex-col gap-2 *:font-medium">
                 <h1 className="text-2xl">Hello!</h1>
                 <h2 className="text-xl">Fill in the form below to join!</h2>
             </div>
-            <form className="flex flex-col gap-4">
-                <FormInput
-                    name="username" type="text" placeholder="Username" required errors={[]}
+            <form action={trigger} className="flex flex-col gap-4">
+                <Input
+                    name="username" type="text" placeholder="Username" required 
+                    minLength={4} maxLength={10} errors={state?.fieldErrors.username}
                 />
-                <FormInput
-                    name="email" type="email" placeholder="Email" required errors={[]}
+                <Input
+                    name="email" type="email" placeholder="Email" required errors={state?.fieldErrors.email}
                 />
-                <FormInput
-                    name="password" type="password" placeholder="Password" required errors={[]}
+                <Input
+                    name="password" type="password" placeholder="Password" required 
+                    minLength={4} errors={state?.fieldErrors.password}
                 />
-                <FormInput
-                    name="confirmPassword" type="password" placeholder="Confirm password" required errors={[]}
+                <Input
+                    name="confirmPassword" type="password" placeholder="Confirm password" required
+                    minLength={4} errors={state?.fieldErrors.confirmPassword}
                 />
-                <FormButton
+                <Button
                     text="Create account"
                 />
             </form>
